@@ -11,7 +11,9 @@ html, body {
     background-repeat: no-repeat;
     background-position: center;
   }
-
+  h1{
+    text-shadow: black 2px 1px;
+  }
   .wrapper {
     color: white;
     display: flex;

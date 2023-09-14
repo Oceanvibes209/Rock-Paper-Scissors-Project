@@ -1,7 +1,7 @@
 const totalScore = { computerScore: 0, playerScore: 0 }
 // ** getComputerChoice randomly selects between `rock` `paper` `scissors` and returns that string **
 function getComputerChoice() {
-    const rpsChoice = ['Rock', 'Paper', 'Scissors'];
+    const rpsChoice = ['Rock', 'Paper', 'Scissors', 'Spock', 'Lizard'];
 
     // Generate a random index to choose from the `choices` array
     const randomNumber = Math.floor(Math.random() * rpsChoice.length);
@@ -14,23 +14,39 @@ function getComputerChoice() {
 const computerChoice = getComputerChoice();
 console.log(computerChoice);
 
+// Lizard and Spock: Borrowed from the TV show "The Big Bang Theory," you can add Lizard and Spock to the traditional trio. 
 // ** getResult compares playerChoice & computerChoice and returns the score accordingly **
 function getResult(playerChoice, computerChoice) {
     // return the result of score based on if you won, drew, or lost
     let score = 0;
-    // Check for the different win conditions and increment the score
-    if (playerChoice == 'Rock' && computerChoice == 'Scissors') {
+    // Check for the different win conditions and increment the score// All situations where human wins, set `score` to 1
+    if (playerChoice == 'Rock' && computerChoice == 'Scissors') {// rock smashes scissors
         score = 1;
-    } else if (playerChoice == 'Scissors' && computerChoice == 'Paper') {
+    } else if (playerChoice == 'Rock' && computerChoice == 'Lizard') {// rock smashes lizard
         score = 1;
-    } else if (playerChoice == 'Paper' && computerChoice == 'Rock') {
-        score = 1;  // All situations where human wins, set `score` to 1
-    } else if (playerChoice == computerChoice) {// All situations where human draws, set `score` to 0
+    } else if (playerChoice == 'Scissors' && computerChoice == 'Paper') {// scissors cuts paper
+        score = 1;
+    } else if (playerChoice == 'Scissors' && computerChoice == 'Lizard') {// scissors cuts lizard
+        score = 1; 
+    } else if (playerChoice == 'Paper' && computerChoice == 'Rock') {// paper covers rock
+        score = 1;  
+    } else if (playerChoice == 'Paper' && computerChoice == 'Spock') { //Paper disproves Spock
+        score = 1;  
+    } else if (playerChoice == 'Lizard' && computerChoice == 'Spock') { //Lizard poisons Spock
+        score = 1;  
+    } else if (playerChoice == 'Lizard' && computerChoice == 'Paper') { //Lizard eats Paper
+        score = 1;  
+    } else if (playerChoice == 'Spock' && computerChoice == 'Rock') { //Spock vaporizes Rock
+        score = 1;  
+    } else if (playerChoice == 'Spock' && computerChoice == 'Scissors') { //Spock smashes Scissors
+        score = 1;  
+    } else if (playerChoice == computerChoice) {  // All situations where human draws, set `score` to 0
         score = 0;
-    } else { // Otherwise human loses (aka set score to -1)
+    } else {   // Otherwise human loses (aka set score to -1)
         score = -1;
-    } // Return the final score
+    }   // Return the final score
     return score;
+     
 }
 
 // ** showResult updates the DOM to `You Win!` or `You Lose!` or `It's a Draw!` based on the score. Also shows Player Choice vs. Computer Choice**
@@ -59,17 +75,18 @@ function onClickRPS(playerChoice) {
     const score = getResult(playerChoice, computerChoice)
     totalScore['playerScore'] += score
     console.log(totalScore)
-    console.log({ score })
+    // console.log({ score })
     showResult(score, playerChoice, computerChoice)
 }
 
 
-// ** Make the RPS buttons actively listen for a click and do something once a click is detected **
+// Make the RPS buttons actively listen for a click and do something once a click is detected **
 function playGame() {
     // use querySelector to select all RPS Buttons
     const rpsButtons = document.querySelectorAll('.rpsButton')
     rpsButtons[0].onclick = () => console.log(rpsButtons[0].value)
-    // * Adds an on click event listener to each RPS button and every time you click it, it calls the onClickRPS function with the RPS button that was last clicked *
+    //  Adds an on click event listener to each RPS button and every time you click it, 
+    //it calls the onClickRPS function with the RPS button that was last clicked 
     rpsButtons.forEach(rpsButton => {
         rpsButton.onclick = () => onClickRPS(rpsButton.value)
     })
@@ -78,7 +95,7 @@ function playGame() {
     endGameButton.onclick = () => endGame(totalScore)
 }
 
-// ** endGame function clears all the text on the DOM **
+// endGame function clears all the text on the DOM 
 function endGame() {
     totalScore['playerScore'] = 0
     totalScore['computerScore'] = 0
