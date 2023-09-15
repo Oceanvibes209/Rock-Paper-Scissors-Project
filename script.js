@@ -80,9 +80,13 @@ function onClickRPS(playerChoice) {
     if (score === 1) {
         totalScore['playerScore'] += 1;
         totalScore['computerScore'] -= 1;
+        document.getElementById('player-score').style.color = 'green' // If player wins "Your score" turns green
+        document.getElementById('computer-score').style.color = 'red'// If computer loses "Computer score" turns red
     } else if (score === -1) {
         totalScore['computerScore'] += 1;
         totalScore['playerScore'] -= 1;
+        document.getElementById('player-score').style.color = 'red' // If computer wins "Computer Score" turns green
+        document.getElementById('computer-score').style.color = 'green'// If player loses "Your Score" turns red
     }
 
     console.log(totalScore)
