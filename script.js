@@ -54,6 +54,7 @@ function showResult(score, playerChoice, computerChoice) {
     const resultDiv = document.getElementById('result');
     const playerScoreDiv = document.getElementById('player-score');
     const handsDiv = document.getElementById('hands');
+    const computerScoreDiv = document.getElementById('computer-score');
 
     if (score === -1) {
         resultDiv.innerText = 'You Lose! :(';
@@ -65,6 +66,8 @@ function showResult(score, playerChoice, computerChoice) {
 
     handsDiv.innerText = ` Your choice: ${playerChoice} vs Computer Choice: ${computerChoice}`
     playerScoreDiv.innerText = `Your Score: ${totalScore['playerScore']}`
+    computerScoreDiv.innerText = `Computer Score: ${totalScore['computerScore']}`
+
 }
 
 // ** Calculate who won and show it on the screen **
@@ -73,9 +76,16 @@ function onClickRPS(playerChoice) {
     const computerChoice = getComputerChoice()
     console.log({ computerChoice })
     const score = getResult(playerChoice, computerChoice)
-    totalScore['playerScore'] += score
+    
+    if (score === 1) {
+        totalScore['playerScore'] += 1;
+        totalScore['computerScore'] -= 1;
+    } else if (score === -1) {
+        totalScore['computerScore'] += 1;
+        totalScore['playerScore'] -= 1;
+    }
+
     console.log(totalScore)
-    // console.log({ score })
     showResult(score, playerChoice, computerChoice)
 }
 
@@ -102,10 +112,12 @@ function endGame() {
     const resultDiv = document.getElementById('result');
     const playerScoreDiv = document.getElementById('player-score');
     const handsDiv = document.getElementById('hands');
+    const computerScoreDiv = document.getElementById('computer-score');
 
     resultDiv.innerText = ''
     playerScoreDiv.innerText = ''
     handsDiv.innerText = ''
+    computerScoreDiv.innerText=''
 }
 
 playGame()
