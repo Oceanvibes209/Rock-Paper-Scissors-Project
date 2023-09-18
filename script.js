@@ -1,5 +1,5 @@
 const totalScore = { computerScore: 0, playerScore: 0 }
-// ** getComputerChoice randomly selects between `rock` `paper` `scissors` and returns that string **
+// getComputerChoice randomly selects between `rock` `paper` `scissors` and returns that string 
 function getComputerChoice() {
     const rpsChoice = ['Rock', 'Paper', 'Scissors', 'Spock', 'Lizard'];
 
@@ -14,33 +14,33 @@ function getComputerChoice() {
 const computerChoice = getComputerChoice();
 console.log(computerChoice);
 
-// Lizard and Spock: Borrowed from the TV show "The Big Bang Theory," you can add Lizard and Spock to the traditional trio. 
-// ** getResult compares playerChoice & computerChoice and returns the score accordingly **
+ 
+
 function getResult(playerChoice, computerChoice) {
     // return the result of score based on if you won, drew, or lost
     let score = 0;
     // Check for the different win conditions and increment the score// All situations where human wins, set `score` to 1
-    if (playerChoice == 'Rock' && computerChoice == 'Scissors') {// rock smashes scissors
+    if (playerChoice === 'Rock' && computerChoice === 'Scissors') {// rock smashes scissors
         score = 1;
-    } else if (playerChoice == 'Rock' && computerChoice == 'Lizard') {// rock smashes lizard
+    } else if (playerChoice === 'Rock' && computerChoice === 'Lizard') {// rock smashes lizard
         score = 1;
-    } else if (playerChoice == 'Scissors' && computerChoice == 'Paper') {// scissors cuts paper
+    } else if (playerChoice === 'Scissors' && computerChoice === 'Paper') {// scissors cuts paper
         score = 1;
-    } else if (playerChoice == 'Scissors' && computerChoice == 'Lizard') {// scissors cuts lizard
+    } else if (playerChoice === 'Scissors' && computerChoice === 'Lizard') {// scissors cuts lizard
         score = 1; 
-    } else if (playerChoice == 'Paper' && computerChoice == 'Rock') {// paper covers rock
+    } else if (playerChoice === 'Paper' && computerChoice === 'Rock') {// paper covers rock
         score = 1;  
-    } else if (playerChoice == 'Paper' && computerChoice == 'Spock') { //Paper disproves Spock
+    } else if (playerChoice === 'Paper' && computerChoice === 'Spock') { //Paper disproves Spock
         score = 1;  
-    } else if (playerChoice == 'Lizard' && computerChoice == 'Spock') { //Lizard poisons Spock
+    } else if (playerChoice === 'Lizard' && computerChoice === 'Spock') { //Lizard poisons Spock
         score = 1;  
-    } else if (playerChoice == 'Lizard' && computerChoice == 'Paper') { //Lizard eats Paper
+    } else if (playerChoice === 'Lizard' && computerChoice === 'Paper') { //Lizard eats Paper
         score = 1;  
-    } else if (playerChoice == 'Spock' && computerChoice == 'Rock') { //Spock vaporizes Rock
+    } else if (playerChoice === 'Spock' && computerChoice === 'Rock') { //Spock vaporizes Rock
         score = 1;  
-    } else if (playerChoice == 'Spock' && computerChoice == 'Scissors') { //Spock smashes Scissors
+    } else if (playerChoice === 'Spock' && computerChoice === 'Scissors') { //Spock smashes Scissors
         score = 1;  
-    } else if (playerChoice == computerChoice) {  // All situations where human draws, set `score` to 0
+    } else if (playerChoice === computerChoice) {  // All situations where human draws, set `score` to 0
         score = 0;
     } else {   // Otherwise human loses (aka set score to -1)
         score = -1;
@@ -49,7 +49,7 @@ function getResult(playerChoice, computerChoice) {
      
 }
 
-// ** showResult updates the DOM to `You Win!` or `You Lose!` or `It's a Draw!` based on the score. Also shows Player Choice vs. Computer Choice**
+// showResult updates the DOM to `You Win!` or `You Lose!` or `It's a Draw!` based on the score. Also shows Player Choice vs. Computer Choice
 function showResult(score, playerChoice, computerChoice) {
     const resultDiv = document.getElementById('result');
     const playerScoreDiv = document.getElementById('player-score');
@@ -70,7 +70,7 @@ function showResult(score, playerChoice, computerChoice) {
 
 }
 
-// ** Calculate who won and show it on the screen **
+// Calculate who won and show it on the screen 
 function onClickRPS(playerChoice) {
     console.log({ playerChoice })
     const computerChoice = getComputerChoice()
@@ -81,8 +81,8 @@ function onClickRPS(playerChoice) {
         totalScore['playerScore'] += 1;
         totalScore['computerScore'] -= 1;
         document.getElementById('player-score', 'result').style.color = 'green'// If player wins "Your score" turns green
-        document.getElementById('result').style.color = 'green' // Result turns green if player wins
         document.getElementById('computer-score').style.color = 'red'// If computer loses "Computer score" turns red
+        document.getElementById('result').style.color = 'green' // Result turns green if player wins
     } else if (score === -1) {
         totalScore['computerScore'] += 1;
         totalScore['playerScore'] -= 1;
